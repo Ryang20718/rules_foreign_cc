@@ -137,7 +137,7 @@ native_tool_toolchain(
 make_tool(
     name = "make_tool",
     srcs = "@gnumake_src//:all_srcs",
-    tags = ["manual"],
+    tags = ["manual", "no-remote"],
 )
 
 native_tool_toolchain(
