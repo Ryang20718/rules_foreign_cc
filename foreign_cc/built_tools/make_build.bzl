@@ -94,7 +94,6 @@ def _make_tool_impl(ctx):
             "echo 'AC_DEFINE(AM_SANITY_CHECK, 0)' >> ./configure.ac",
             "sed -i 's/^AM_INIT_AUTOMAKE/# &/' ./configure.ac",
             "cat ./configure.ac",
-            "./make distclean",
             "rm -rf ./configure",
             "autoreconf -i -f",
             "%s ./configure --without-guile --with-guile=no --disable-dependency-tracking --prefix=$$INSTALLDIR$$" % configure_env,
