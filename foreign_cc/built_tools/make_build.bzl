@@ -120,7 +120,6 @@ make_tool = rule(
         "@rules_foreign_cc//foreign_cc/private/framework:shell_toolchain",
         "@bazel_tools//tools/cpp:toolchain_type",
     ],
-    execution_requirement = {"local" : True},
 )
 
 def _join_flags_list(workspace_name, flags):
