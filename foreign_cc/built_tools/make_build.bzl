@@ -89,7 +89,7 @@ def _make_tool_impl(ctx):
         # "echo 'm4_define([AM_SANITY_CHECK], [true])' > configure.ac"
         print("GGGGGGGGGGG")
         script = [
-            "find .",
+            "cat ./configure.ac",
             "%s ./configure --without-guile --with-guile=no --disable-dependency-tracking --prefix=$$INSTALLDIR$$" % configure_env,
             "cat build.cfg",
             "./build.sh",
