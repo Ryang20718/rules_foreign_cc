@@ -91,6 +91,7 @@ def _make_tool_impl(ctx):
         script = [
             "find .",
             "cat ./configure.ac",
+            "echo 'AC_DEFINE(AM_SANITY_CHECK, 0)' >> ./configure.ac",
             "sed -i 's/^AM_INIT_AUTOMAKE/# &/' ./configure.ac",
             "cat ./configure.ac | grep AM_INIT_AUTOMAKE",
             "autoreconf",
