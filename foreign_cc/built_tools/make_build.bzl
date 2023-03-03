@@ -89,7 +89,10 @@ def _make_tool_impl(ctx):
         # "echo 'm4_define([AM_SANITY_CHECK], [true])' > configure.ac"
         print("GGGGGGGGGGG")
         script = [
-            "cat ./configure.ac",
+            "cat ./configure.ac | grep AM_INIT_AUTOMAKE",
+            "sed -i 's/^AM_INIT_AUTOMAKE/# &/' ./configure.ac",
+            "cat ./configure.ac | grep AM_INIT_AUTOMAKE",
+            "autoconf",
             "%s ./configure --without-guile --with-guile=no --disable-dependency-tracking --prefix=$$INSTALLDIR$$" % configure_env,
             "cat build.cfg",
             "./build.sh",
