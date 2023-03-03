@@ -87,13 +87,13 @@ def _make_tool_impl(ctx):
         # --disable-sanity-check
 #--disable-dependency-tracking 
         # "echo 'm4_define([AM_SANITY_CHECK], [true])' > configure.ac"
+        # "echo 'AC_CONFIG_MACRO_DIR(['m4'])' >> ./configure.ac",
+        # "echo 'm4_pattern_allow([AC_CONFIG_MACRO_DIR])' >> ./configure.ac",
+        # "sed -i 's/^AM_INIT_AUTOMAKE/# &/' ./configure.ac",
         print("GGGGGGGGGGG")
         script = [
             "find .",
             "echo 'AC_DEFINE(AM_SANITY_CHECK, 0)' >> ./configure.ac",
-            "echo 'AC_CONFIG_MACRO_DIR(['m4'])' >> ./configure.ac",
-            "echo 'm4_pattern_allow([AC_CONFIG_MACRO_DIR])' >> ./configure.ac",
-            "sed -i 's/^AM_INIT_AUTOMAKE/# &/' ./configure.ac",
             "cat ./configure.ac",
             "rm -rf ./configure",
             "autoreconf",
