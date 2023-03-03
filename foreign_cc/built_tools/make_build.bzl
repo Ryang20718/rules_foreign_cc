@@ -94,6 +94,7 @@ def _make_tool_impl(ctx):
             "echo 'AC_CONFIG_MACRO_DIR(['m4'])' >> ./configure.ac",
             "echo 'm4_pattern_allow([AC_CONFIG_MACRO_DIR])' >> ./configure.ac",
             "sed -i 's/^AM_INIT_AUTOMAKE/# &/' ./configure.ac",
+            "cat ./configure.ac",
             "rm -rf ./configure",
             "autoreconf",
             "cat -n ./configure",
