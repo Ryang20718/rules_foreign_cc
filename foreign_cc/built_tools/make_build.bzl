@@ -85,12 +85,12 @@ def _make_tool_impl(ctx):
 
         configure_env = " ".join(["%s=\"%s\"" % (key, value) for key, value in env.items()])
         # --disable-sanity-check
-        # --disable-maintaner-mode
+
         # "echo 'm4_define([AM_SANITY_CHECK], [true])' > configure.ac"
         print("GGGGGGGGGGG")
         script = [
             "find .",
-            "%s ./configure --disable-sanity-check --without-guile --with-guile=no --disable-dependency-tracking --prefix=$$INSTALLDIR$$" % configure_env,
+            "%s ./configure --without-guile --with-guile=no --disable-dependency-tracking --prefix=$$INSTALLDIR$$" % configure_env,
             "cat build.cfg",
             "./build.sh",
             "./make install",
