@@ -93,7 +93,7 @@ def _make_tool_impl(ctx):
             "cat ./configure.ac",
             "sed -i 's/^AM_INIT_AUTOMAKE/# &/' ./configure.ac",
             "cat ./configure.ac | grep AM_INIT_AUTOMAKE",
-            "autoconf -I ./configure.ac",
+            "autoreconf",
             "%s ./configure --without-guile --with-guile=no --disable-dependency-tracking --prefix=$$INSTALLDIR$$" % configure_env,
             "cat build.cfg",
             "./build.sh",
