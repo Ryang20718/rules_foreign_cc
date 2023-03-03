@@ -103,6 +103,7 @@ def _make_tool_impl(ctx):
             "sed -i '15166s/.*/Check your system clock GGGGGGG\"/' ./configure",
             "sed -i '2605,2608s/^/# /' ./configure",
             "sed -i '15118,15122s/^/# /' ./configure",
+            "sed -i '15179s/^/# /' ./configure",
             "cat -n ./configure",
             "%s ./configure --without-guile --disable-dependency-tracking --with-guile=no --prefix=$$INSTALLDIR$$" % configure_env,
             "cat build.sh",
