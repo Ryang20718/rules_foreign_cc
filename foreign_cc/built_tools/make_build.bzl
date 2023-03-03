@@ -90,16 +90,14 @@ def _make_tool_impl(ctx):
         print("GGGGGGGGGGG")
         script = [
             "find .",
-            "cat ./configure.ac",
             "echo 'AC_DEFINE(AM_SANITY_CHECK, 0)' >> ./configure.ac",
             "echo 'AC_CONFIG_MACRO_DIR(['m4'])' >> ./configure.ac",
             "echo 'm4_pattern_allow([AC_CONFIG_MACRO_DIR])' >> ./configure.ac",
             "sed -i 's/^AM_INIT_AUTOMAKE/# &/' ./configure.ac",
-            "cat ./configure.ac",
             "rm -rf ./configure",
             "autoreconf",
             "cat -n ./configure",
-            "%s ./configure --without-guile --with-guile=no --prefix=$$INSTALLDIR$$" % configure_env,
+            "%s ./configure --without-guile --disable-dependency-tracking --with-guile=no --prefix=$$INSTALLDIR$$" % configure_env,
             "cat build.sh",
             "./make install",
         ]
@@ -122,6 +120,7 @@ make_tool = rule(
         "@rules_foreign_cc//foreign_cc/private/framework:shell_toolchain",
         "@bazel_tools//tools/cpp:toolchain_type",
     ],
+    execution_requirement = {"local" : True},
 )
 
 def _join_flags_list(workspace_name, flags):
