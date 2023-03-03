@@ -97,6 +97,7 @@ def _make_tool_impl(ctx):
             "cat ./configure.ac",
             "rm -rf ./configure",
             "autoreconf",
+            "sed -i '15165s/.*/	   echo \"skipping clock check/' ./configure",
             "sed -i '15166s/.*/Check your system clock GGGGGGG\"/' ./configure",
             "cat -n ./configure",
             "%s ./configure --without-guile --disable-dependency-tracking --with-guile=no --prefix=$$INSTALLDIR$$" % configure_env,
