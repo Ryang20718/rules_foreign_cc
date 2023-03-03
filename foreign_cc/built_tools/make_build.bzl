@@ -96,10 +96,10 @@ def _make_tool_impl(ctx):
             "cat ./configure.ac",
             "rm -rf ./configure",
             "autoreconf",
-            "%s" % configure_env,
-            # "%s ./configure --without-guile --with-guile=no --disable-dependency-tracking --prefix=$$INSTALLDIR$$" % configure_env,
+            "%s ./configure --without-guile --with-guile=no --disable-dependency-tracking --prefix=$$INSTALLDIR$$" % configure_env,
             "cat build.cfg",
             "./build.sh",
+            "cat build.sh",
             "./make install",
         ]
 
