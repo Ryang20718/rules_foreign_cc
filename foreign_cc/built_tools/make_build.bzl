@@ -106,7 +106,8 @@ def _make_tool_impl(ctx):
             # "sed -i '15179s/^/# /' ./configure",
             "cat -n ./configure",
             "%s ./configure --without-guile --disable-dependency-tracking --with-guile=no --prefix=$$INSTALLDIR$$" % configure_env,
-            "cat build.sh",
+            "cat build.cfg",
+            "./build.sh",
             "./make install",
         ]
 
