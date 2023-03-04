@@ -101,7 +101,7 @@ def _make_tool_impl(ctx):
             "sed -i '3011s/.*/Check your system clock GGGGGGG\"/' ./configure",
             # "sed -i '15165s/.*/	   echo \"skipping clock check/' ./configure",
             # "sed -i '15166s/.*/Check your system clock GGGGGGG\"/' ./configure",
-            "sed -i '2605,2608s/^/# /' ./configure",
+            # "sed -i '2605,2608s/^/# /' ./configure",
             # "sed -i '15118,15122s/^/# /' ./configure",
             # "sed -i '15179s/^/# /' ./configure",
             "cat -n ./configure",
