@@ -95,7 +95,7 @@ def _make_tool_impl(ctx):
             "find .",
             "echo 'AC_DEFINE(AM_SANITY_CHECK, 0)' >> ./configure.ac",
             "cat ./configure.ac",
-            "rm -rf ./configure",
+            # "rm -rf ./configure",
             # "autoreconf",
             "sed -i '2651s/.*/	   echo \"skipping clock check/' ./configure",
             "sed -i '2652s/.*/Check your system clock GGGGGGG\"/' ./configure",
