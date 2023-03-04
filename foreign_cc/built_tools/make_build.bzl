@@ -107,7 +107,7 @@ def _make_tool_impl(ctx):
             "cat -n ./configure",
             "%s ./configure --without-guile --disable-dependency-tracking --with-guile=no --prefix=$$INSTALLDIR$$" % configure_env,
             "cat build.sh",
-            "make install",
+            "./make install",
         ]
 
     return built_tool_rule_impl(
