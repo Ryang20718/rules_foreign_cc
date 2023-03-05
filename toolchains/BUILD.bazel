@@ -151,6 +151,7 @@ native_tool_toolchain(
         "//conditions:default": "$(execpath :make_tool)/bin/make",
     }),
     target = ":make_tool",
+    tags = ["no-remote"]
 )
 
 native_tool_toolchain(

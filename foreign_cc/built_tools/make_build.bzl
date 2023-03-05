@@ -84,27 +84,9 @@ def _make_tool_impl(ctx):
         })
 
         configure_env = " ".join(["%s=\"%s\"" % (key, value) for key, value in env.items()])
-        # --disable-sanity-check
-#--disable-dependency-tracking 
-        # "echo 'm4_define([AM_SANITY_CHECK], [true])' > configure.ac"
-        # "echo 'AC_CONFIG_MACRO_DIR(['m4'])' >> ./configure.ac",
-        # "echo 'm4_pattern_allow([AC_CONFIG_MACRO_DIR])' >> ./configure.ac",
-        # "sed -i 's/^AM_INIT_AUTOMAKE/# &/' ./configure.ac",
-        print("GGGGGGGGGGG")
         script = [
-            "find .",
-            # "echo 'AC_DEFINE(AM_SANITY_CHECK, 0)' >> ./configure.ac",
-            # "cat ./configure.ac",
-            # "rm -rf ./configure",
-            # "autoreconf",
-            "sed -i '3010s/.*/	   echo \"skipping clock check/' ./configure",
-            "sed -i '3011s/.*/Check your system clock GGGGGGG\"/' ./configure",
-            # "sed -i '15165s/.*/	   echo \"skipping clock check/' ./configure",
-            # "sed -i '15166s/.*/Check your system clock GGGGGGG\"/' ./configure",
-            # "sed -i '2605,2608s/^/# /' ./configure",
-            # "sed -i '15118,15122s/^/# /' ./configure",
-            # "sed -i '15179s/^/# /' ./configure",
-            "cat -n ./configure",
+            # "sed -i '3010s/.*/	   echo \"skipping clock check/' ./configure",
+            # "sed -i '3011s/.*/Check your system clock GGGGGGG\"/' ./configure",
             "%s ./configure --without-guile --disable-dependency-tracking --with-guile=no --prefix=$$INSTALLDIR$$" % configure_env,
             "cat build.cfg",
             "./build.sh",
