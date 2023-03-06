@@ -25,7 +25,6 @@ def create_configure_script(
         autogen_options,
         make_path,
         make_commands):
-    print("GGGGG")
 
     ext_build_dirs = inputs.ext_build_dirs
 
@@ -42,7 +41,6 @@ def create_configure_script(
     script.append("##enable_tracing##")
 
     if autogen:
-        print("AUTOGEN")
         # NOCONFIGURE is pseudo standard and tells the script to not invoke configure.
         # We explicitly invoke configure later.
         autogen_env_vars = _get_autogen_env_vars(env_vars)
@@ -56,7 +54,6 @@ def create_configure_script(
     env_vars_string = " ".join(["{}=\"{}\"".format(key, value) for (key, value) in env_vars.items()])
 
     if autoconf:
-        print("AUTOCONF")
         script.append("{env_vars} {autoconf} {options}".format(
             env_vars = env_vars_string,
             # TODO: Pass autoconf via a toolchain
@@ -65,7 +62,6 @@ def create_configure_script(
         ).lstrip())
 
     if autoreconf:
-        print("AUTORECONF")
         script.append("{env_vars} {autoreconf} {options}".format(
             env_vars = env_vars_string,
             # TODO: Pass autoreconf via a toolchain
@@ -84,7 +80,6 @@ def create_configure_script(
 
     script.extend(make_commands)
     script.append("##disable_tracing##")
-    print("SCRIPT", script)
 
     return script
 
