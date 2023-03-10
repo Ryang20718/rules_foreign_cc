@@ -1021,7 +1021,7 @@ def _expand_locations_in_string(ctx, expandable, data):
         return ctx.expand_location(expandable.replace("$(execpath ", "$$EXT_BUILD_ROOT$$/$(execpath "), data)
 
 
-def _add_tag_to_toolchain(ctx):
+def _add_tag_to_toolchains(ctx):
     return [
         ctx.toolchain(
             name = toolchain_name,
