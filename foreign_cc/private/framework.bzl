@@ -415,7 +415,8 @@ def cc_external_rule_impl(ctx, attrs):
         if tool.target:
             data_dependencies.append(tool.target)
     print("HERE")
-    ctx.toolchains = _add_tag_to_toolchains(ctx)
+    print(ctx.toolchain)
+    print(ctx.toolchains())
     print(ctx.attr.tags)
 
     # Also add legacy dependencies while they're still available
