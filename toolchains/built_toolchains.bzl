@@ -70,10 +70,12 @@ def _make_toolchain(version, register_toolchains, built_toolchain_no_remote):
     if register_toolchains:
         print("TOOLCHAIN DEBUG", built_toolchain_no_remote)
         if built_toolchain_no_remote:
+            print("TOOLCHAIN DEBUG REGISTERING built_make_toolchain_local TOOLCHAIN", built_toolchain_no_remote)
             native.register_toolchains(
                 "@rules_foreign_cc//toolchains:built_make_toolchain_local",
             )
         else:
+            print("TOOLCHAIN DEBUG REGISTERING built_make_toolchain TOOLCHAIN", built_toolchain_no_remote)
             native.register_toolchains(
                 "@rules_foreign_cc//toolchains:built_make_toolchain",
             )
