@@ -415,13 +415,6 @@ def cc_external_rule_impl(ctx, attrs):
         if tool.target:
             data_dependencies.append(tool.target)
 
-    # use local toolchain if needed
-    remote_toolchains = []
-    # if "no-remote-exec" in ctx.attr.tags:
-    #     for toolchain in ctx.toolchains:
-    #         remote_toolchains.append(toolchain)
-    # ctx.toolchains = remote_toolchains
-
     # Also add legacy dependencies while they're still available
     data_dependencies += ctx.attr.tools_deps + ctx.attr.additional_tools
 
@@ -1023,13 +1016,3 @@ def _expand_locations_in_string(ctx, expandable, data):
         return ctx.expand_location(expandable, data)
     else:
         return ctx.expand_location(expandable.replace("$(execpath ", "$$EXT_BUILD_ROOT$$/$(execpath "), data)
-
-
-def _add_tag_to_toolchains(ctx):
-    return [
-        ctx.toolchain(
-            name = toolchain_name,
-            tags = ["no-remote-exec"],
-        )
-        for toolchain_name in ctx.attr.names
-    ]

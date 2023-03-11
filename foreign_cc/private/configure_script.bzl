@@ -25,7 +25,6 @@ def create_configure_script(
         autogen_options,
         make_path,
         make_commands):
-
     ext_build_dirs = inputs.ext_build_dirs
 
     script = pkgconfig_script(ext_build_dirs)

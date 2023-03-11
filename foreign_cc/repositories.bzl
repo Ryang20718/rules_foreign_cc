@@ -16,8 +16,7 @@ def rules_foreign_cc_dependencies(
         register_preinstalled_tools = True,
         register_built_tools = True,
         register_toolchains = True,
-        register_built_pkgconfig_toolchain = False,
-        local_toolchains = False):
+        register_built_pkgconfig_toolchain = False):
     """Call this function from the WORKSPACE file to initialize rules_foreign_cc \
     dependencies and let neccesary code generation happen \
     (Code generation is needed to support different variants of the C++ Starlark API.).
@@ -57,9 +56,6 @@ def rules_foreign_cc_dependencies(
             startup --windows_enable_symlinks -> This is required to enable symlinking to avoid long runfile paths
             build --action_env=MSYS=winsymlinks:nativestrict -> This is required to enable symlinking to avoid long runfile paths
             startup --output_user_root=C:/b  -> This is required to keep paths as short as possible
-
-        local toolchains: If true, the built make toolchain will not be built on remote executor but on local
-        In some cases, remote executors may be FUSE based and not handle system time well
     """
 
     register_framework_toolchains(register_toolchains = register_toolchains)
@@ -78,7 +74,6 @@ def rules_foreign_cc_dependencies(
             pkgconfig_version = pkgconfig_version,
             register_toolchains = register_toolchains,
             register_built_pkgconfig_toolchain = register_built_pkgconfig_toolchain,
-            local_toolchains = local_toolchains,
         )
 
     if register_preinstalled_tools:

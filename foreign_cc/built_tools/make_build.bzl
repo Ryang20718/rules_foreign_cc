@@ -85,9 +85,7 @@ def _make_tool_impl(ctx):
 
         configure_env = " ".join(["%s=\"%s\"" % (key, value) for key, value in env.items()])
         script = [
-            # "sed -i '3010s/.*/	   echo \"skipping clock check/' ./configure",
-            # "sed -i '3011s/.*/Check your system clock GGGGGGG\"/' ./configure",
-            "%s ./configure --without-guile --disable-dependency-tracking --with-guile=no --prefix=$$INSTALLDIR$$" % configure_env,
+            "%s ./configure --without-guile --with-guile=no --disable-dependency-tracking --prefix=$$INSTALLDIR$$" % configure_env,
             "cat build.cfg",
             "./build.sh",
             "./make install",

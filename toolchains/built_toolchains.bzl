@@ -16,7 +16,7 @@ filegroup(
 """
 
 # buildifier: disable=unnamed-macro
-def built_toolchains(cmake_version, make_version, ninja_version, pkgconfig_version, register_toolchains, register_built_pkgconfig_toolchain, local_toolchains):
+def built_toolchains(cmake_version, make_version, ninja_version, pkgconfig_version, register_toolchains, register_built_pkgconfig_toolchain):
     """
     Register toolchains for built tools that will be built from source
 
@@ -33,11 +33,9 @@ def built_toolchains(cmake_version, make_version, ninja_version, pkgconfig_versi
         register_toolchains: If true, registers the toolchains via native.register_toolchains. Used by bzlmod
 
         register_built_pkgconfig_toolchain: If true, the built pkgconfig toolchain will be registered.
-
-        local_toolchains: If true, toolchain will be set to "no-remote-exec" and execute on local machine
     """
     _cmake_toolchain(cmake_version, register_toolchains)
-    _make_toolchain(make_version, register_toolchains, local_toolchains)
+    _make_toolchain(make_version, register_toolchains)
     _ninja_toolchain(ninja_version, register_toolchains)
 
     if register_built_pkgconfig_toolchain:
@@ -66,16 +64,11 @@ def _cmake_toolchain(version, register_toolchains):
 
     fail("Unsupported cmake version: " + str(version))
 
-def _make_toolchain(version, register_toolchains, local_toolchains):
+def _make_toolchain(version, register_toolchains):
     if register_toolchains:
-        if local_toolchains:
-            native.register_toolchains(
-                "@rules_foreign_cc//toolchains:built_make_toolchain_local",
-            )
-        else:
-            native.register_toolchains(
-                "@rules_foreign_cc//toolchains:built_make_toolchain",
-            )
+        native.register_toolchains(
+            "@rules_foreign_cc//toolchains:built_make_toolchain",
+        )
     if version == "4.4":
         maybe(
             http_archive,
