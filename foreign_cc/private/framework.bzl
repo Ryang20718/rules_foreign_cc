@@ -417,11 +417,10 @@ def cc_external_rule_impl(ctx, attrs):
 
     # use local toolchain if needed
     remote_toolchains = []
-    if "no-remote-exec" in ctx.attr.tags:
-        for toolchain in ctx.toolchains:
-            remote_toolchains.append(toolchain)
-            print(toolchain)
-    ctx.toolchains = remote_toolchains
+    # if "no-remote-exec" in ctx.attr.tags:
+    #     for toolchain in ctx.toolchains:
+    #         remote_toolchains.append(toolchain)
+    # ctx.toolchains = remote_toolchains
 
     # Also add legacy dependencies while they're still available
     data_dependencies += ctx.attr.tools_deps + ctx.attr.additional_tools
