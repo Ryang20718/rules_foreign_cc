@@ -68,6 +68,7 @@ def _cmake_toolchain(version, register_toolchains):
 
 def _make_toolchain(version, register_toolchains, built_toolchain_no_remote):
     if register_toolchains:
+        print("TOOLCHAIN DEBUG", built_toolchain_no_remote)
         if built_toolchain_no_remote:
             native.register_toolchains(
                 "@rules_foreign_cc//toolchains:built_make_toolchain_local",
