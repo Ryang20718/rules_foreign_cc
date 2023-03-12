@@ -300,10 +300,15 @@ bzl_library(
 )
 
 # No-remote toolchains
+
+toolchain_type(
+    name = "make_toolchain_local",
+)
+
 toolchain(
     name = "built_make_toolchain_local",
     toolchain = ":built_make_local",
-    toolchain_type = ":make_toolchain",
+    toolchain_type = ":make_toolchain_local",
 )
 
 make_tool(
