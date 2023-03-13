@@ -68,14 +68,17 @@ def _cmake_toolchain(version, register_toolchains):
 
 def _make_toolchain(version, register_toolchains, built_toolchain_no_remote):
     if register_toolchains:
-        if built_toolchain_no_remote:
-            native.register_toolchains(
-                "@rules_foreign_cc//toolchains:built_make_toolchain_local",
-            )
-        else:
-            native.register_toolchains(
-                "@rules_foreign_cc//toolchains:built_make_toolchain",
-            )
+        native.register_toolchains(
+            "@rules_foreign_cc//toolchains:built_make_toolchain",
+        )
+        # if built_toolchain_no_remote:
+        #     native.register_toolchains(
+        #         "@rules_foreign_cc//toolchains:built_make_toolchain_local",
+        #     )
+        # else:
+        #     native.register_toolchains(
+        #         "@rules_foreign_cc//toolchains:built_make_toolchain",
+        #     )
     if version == "4.4":
         maybe(
             http_archive,
