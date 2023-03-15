@@ -8,6 +8,7 @@ load(
     "FOREIGN_CC_BUILT_TOOLS_HOST_FRAGMENTS",
     "absolutize",
     "built_tool_rule_impl",
+    "EXECUTOR_TYPE",
 )
 load(
     "//foreign_cc/private:cc_toolchain_util.bzl",
@@ -90,6 +91,8 @@ def _make_tool_impl(ctx):
             "./build.sh",
             "./make install",
         ]
+    print(ctx.attr.tags)
+    ctx.attr.tags += [ctx.attr._executor_type[EXECUTOR_TYPE].execution_type]
 
     return built_tool_rule_impl(
         ctx,

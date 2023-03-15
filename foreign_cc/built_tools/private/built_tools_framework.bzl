@@ -6,6 +6,16 @@ load("//foreign_cc/private:detect_root.bzl", "detect_root")
 load("//foreign_cc/private:framework.bzl", "get_env_prelude", "wrap_outputs")
 load("//foreign_cc/private/framework:helpers.bzl", "convert_shell_script", "shebang")
 
+EXECUTOR_TYPE = provider("allows users to specify execution type for a tag. e.g no-remote-exec", fields = ["execution_type"])
+
+def _executor_type_impl(ctx):
+    return EXECUTOR_TYPE(execution_type = ctx.build_setting_value)
+
+executor_type = rule(
+    implementation = _executor_type_impl,
+    build_setting = config.string(flag = True),
+)
+
 # Common attributes for all built_tool rules
 FOREIGN_CC_BUILT_TOOLS_ATTRS = {
     "env": attr.string_dict(
@@ -24,6 +34,7 @@ FOREIGN_CC_BUILT_TOOLS_ATTRS = {
         cfg = "exec",
         default = Label("@rules_foreign_cc//foreign_cc/private/framework:platform_info"),
     ),
+    "_executor_type": attr.label(default = "//foreign_cc/built_tools/private:executor_type"),
 }
 
 # Common fragments for all built_tool rules
