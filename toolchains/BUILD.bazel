@@ -148,7 +148,6 @@ constraint_value(
 make_tool(
     name = "make_tool",
     srcs = "@gnumake_src//:all_srcs",
-    tags = ["manual"],
     tags = select({
         ":make_no_remote_exec": [
             "manual",
